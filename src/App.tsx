@@ -1,7 +1,7 @@
 import React from 'react';
 import { AnimatedBackground } from './components/portfolio/AnimatedBackground';
 import { MinimalNavbar } from './components/portfolio/MinimalNavbar';
-import { YouTubeHeroScreen } from './components/portfolio/YouTubeHeroScreen';
+import { RecorderHeroScreen } from './components/portfolio/RecorderHeroScreen';
 import { FocusedSkillsSection } from './components/portfolio/FocusedSkillsSection';
 import { CompactCertifications } from './components/portfolio/CompactCertifications';
 import { StreamlinedContact } from './components/portfolio/StreamlinedContact';
@@ -17,8 +17,8 @@ export function App() {
       <MinimalNavbar />
 
       <main className="relative z-10 space-y-6">
-        {/* YouTube Screen with Profile Picture at the top (play button removed from middle) */}
-        <YouTubeHeroScreen />
+        {/* Camera Recorder Viewfinder Screen with Profile Picture at the top */}
+        <RecorderHeroScreen />
 
         {/* Core Technical Focus: Databricks, PySpark, SQL, Bitbucket, PyCharm, Informatica PowerCenter */}
         <FocusedSkillsSection />
