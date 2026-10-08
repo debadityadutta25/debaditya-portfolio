@@ -1,69 +1,44 @@
-import React, { useState } from 'react';
-import { BackgroundCanvas } from './components/portfolio/BackgroundCanvas';
-import { PortfolioNavbar } from './components/portfolio/PortfolioNavbar';
-import { HeroSection } from './components/portfolio/HeroSection';
-import { PipelineSimulator } from './components/portfolio/PipelineSimulator';
-import { SkillsSection } from './components/portfolio/SkillsSection';
-import { CertificationsSection } from './components/portfolio/CertificationsSection';
-import { ProjectsSection } from './components/portfolio/ProjectsSection';
-import { InteractiveTerminal } from './components/portfolio/InteractiveTerminal';
-import { ContactSection } from './components/portfolio/ContactSection';
-import { Footer } from './components/portfolio/Footer';
-import { StudioModal } from './components/portfolio/StudioModal';
+import React from 'react';
+import { MinimalNavbar } from './components/portfolio/MinimalNavbar';
+import { YouTubeHeroScreen } from './components/portfolio/YouTubeHeroScreen';
+import { FocusedSkillsSection } from './components/portfolio/FocusedSkillsSection';
+import { CompactCertifications } from './components/portfolio/CompactCertifications';
+import { ConciseProjects } from './components/portfolio/ConciseProjects';
+import { StreamlinedContact } from './components/portfolio/StreamlinedContact';
+import { PERSONAL_INFO } from './data/portfolioData';
 
 export function App() {
-  const [isStudioOpen, setIsStudioOpen] = useState(false);
-  const [terminalCommand, setTerminalCommand] = useState<string | undefined>(undefined);
-
-  const handleOpenStudio = () => {
-    setIsStudioOpen(true);
-  };
-
-  const handleCloseStudio = () => {
-    setIsStudioOpen(false);
-  };
-
-  const handleSelectTerminalCommand = (cmd: string) => {
-    setTerminalCommand(cmd);
-  };
-
   return (
-    <div className="min-h-screen bg-black text-zinc-100 relative selection:bg-cyan-500/30 selection:text-cyan-200">
-      {/* 60fps Interactive Data Pipeline Particle & Stream Canvas */}
-      <BackgroundCanvas />
+    <div className="min-h-screen bg-black text-zinc-100 font-sans selection:bg-red-600/30 selection:text-white">
+      {/* Sticky Clean Header Bar */}
+      <MinimalNavbar />
 
-      {/* Main Glassmorphic Navigation Bar */}
-      <PortfolioNavbar onOpenStudio={handleOpenStudio} />
+      <main className="space-y-4">
+        {/* YouTube Screen with Profile Picture at the top */}
+        <YouTubeHeroScreen />
 
-      {/* Main Content Layout */}
-      <main className="relative z-10 space-y-0">
-        {/* Hero Section */}
-        <HeroSection onOpenStudio={handleOpenStudio} />
+        {/* Core Technical Focus: Databricks, PySpark, SQL, Bitbucket, PyCharm (HVR balanced) */}
+        <FocusedSkillsSection />
 
-        {/* Live Interactive ETL & CDC Pipeline Simulator */}
-        <PipelineSimulator />
+        {/* All 9 Verified Certifications & Badges */}
+        <CompactCertifications />
 
-        {/* Categorized Skills & Platform Matrix */}
-        <SkillsSection onSelectTerminalCommand={handleSelectTerminalCommand} />
+        {/* Production Architectures & Implementations */}
+        <ConciseProjects />
 
-        {/* Verified Enterprise Certifications & Badges (9 Items) */}
-        <CertificationsSection />
-
-        {/* Featured Production Engineering Implementations */}
-        <ProjectsSection onOpenStudio={handleOpenStudio} />
-
-        {/* Interactive CLI Terminal Shell */}
-        <InteractiveTerminal initialCommand={terminalCommand} />
-
-        {/* Contact Coordinates & Direct Reach-out */}
-        <ContactSection />
+        {/* Direct Contact Actions */}
+        <StreamlinedContact />
       </main>
 
-      {/* Footer with Operational Cluster Status */}
-      <Footer />
-
-      {/* Full-Feature DataInsight Studio Demo Modal */}
-      <StudioModal isOpen={isStudioOpen} onClose={handleCloseStudio} />
+      {/* Clean Minimal Footer */}
+      <footer className="border-t border-zinc-900 py-8 text-center text-xs text-zinc-500 font-mono">
+        <div>
+          © {new Date().getFullYear()} {PERSONAL_INFO.name} • {PERSONAL_INFO.location}
+        </div>
+        <div className="mt-1 text-[11px] text-zinc-600">
+          Databricks • PySpark • SQL • Bitbucket • PyCharm Data Engineer
+        </div>
+      </footer>
     </div>
   );
 }

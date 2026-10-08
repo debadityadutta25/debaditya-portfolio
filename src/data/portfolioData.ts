@@ -1,12 +1,12 @@
-export interface SkillItem {
+export interface PrimarySkill {
   name: string;
-  category: 'Big Data & Lakehouse' | 'Data Warehousing' | 'CDC & ETL' | 'Databases & Querying' | 'Cloud & Languages';
-  level: number; // percentage
-  experience: string;
+  category: string;
+  level: number;
+  highlight: string;
   description: string;
-  tags: string[];
+  keyTools: string[];
   color: string;
-  iconName: string;
+  isPrimary: boolean;
 }
 
 export interface CertificationItem {
@@ -16,139 +16,105 @@ export interface CertificationItem {
   date: string;
   year: number;
   type: 'Certification' | 'Badge' | 'Accreditation';
-  credentialUrl?: string;
   badgeColor: string;
   skillsCovered: string[];
-  summary: string;
 }
 
 export interface ProjectItem {
   id: string;
   title: string;
   subtitle: string;
+  techStack: string[];
   description: string;
-  architecture: string[];
-  metrics: { label: string; value: string }[];
-  tags: string[];
-  githubUrl?: string;
-  liveDemo?: boolean;
-  featured: boolean;
-  category: string;
+  outcomes: string[];
 }
 
 export const PERSONAL_INFO = {
   name: "Debaditya Dutta",
-  role: "Data Engineer & Cloud Analytics Specialist",
-  tagline: "Architecting high-throughput data pipelines, real-time CDC replication, and modern cloud lakehouses.",
+  title: "Data Engineer",
+  tagline: "Databricks • PySpark • SQL • Bitbucket • PyCharm",
   location: "West Bengal, Pin- 712136, India",
-  pinCode: "712136",
   phone: "+91 6291622784",
   email: "debadityadutta10@gmail.com",
   linkedIn: "https://www.linkedin.com/in/debaditya-dutta-1295861b5/",
   github: "https://github.com/debadityadutta25",
-  aboutSummary: `I am a specialized Data Engineer with hands-on expertise across modern lakehouse architectures, distributed big data processing, enterprise ETL/ELT modernization, and real-time CDC replication. With deep proficiency in Databricks, PySpark, Snowflake, Fivetran HVR, Oracle Database, and Informatica PowerCenter, I design and orchestrate scalable, fault-tolerant, petabyte-scale data pipelines that bridge legacy on-premises databases with modern cloud data platforms.`,
-  stats: [
-    { label: "Industry Certifications", value: "9+", subtext: "Databricks, Snowflake, AWS, Fivetran, MongoDB, Reltio" },
-    { label: "Core Enterprise Tech", value: "9+", subtext: "Databricks, Snowflake, PySpark, Oracle, HVR, Informatica" },
-    { label: "Pipeline Reliability", value: "99.9%", subtext: "Production SLA & ACID-compliant lakehouse tables" },
-    { label: "Real-time CDC & Streaming", value: "Sub-Sec", subtext: "Log-based replication with zero data loss" },
-  ],
+  profileImage: "./profile.jpg",
+  bio: "Results-driven Data Engineer specializing in scalable lakehouse architectures, distributed big data processing with PySpark & Databricks, complex SQL optimization, and professional software engineering practices using PyCharm and Bitbucket. Experienced in real-time CDC replication with Fivetran HVR and cloud data platforms.",
 };
 
-export const SKILLS_DATA: SkillItem[] = [
+// Focused primarily on Databricks, PySpark, SQL, Bitbucket, PyCharm; HVR with less focus
+export const PRIMARY_SKILLS: PrimarySkill[] = [
   {
     name: "Databricks",
-    category: "Big Data & Lakehouse",
+    category: "Lakehouse Architecture",
     level: 95,
-    experience: "Lakehouse & Unity Catalog",
-    description: "Architecting Medallion (Bronze/Silver/Gold) architectures, Delta Lake optimization, cluster management, Auto Loader, and Databricks Workflows.",
-    tags: ["Delta Lake", "Unity Catalog", "Workflows", "Auto Loader", "Cluster Tuning"],
+    highlight: "Medallion Architecture & Delta Lake",
+    description: "Designing end-to-end Medallion (Bronze/Silver/Gold) pipelines, Delta Lake tables with ACID compliance, Auto Loader streaming, Unity Catalog governance, and automated Databricks Workflows.",
+    keyTools: ["Delta Lake", "Unity Catalog", "Databricks Workflows", "Auto Loader", "Cluster Optimization"],
     color: "#FF3621",
-    iconName: "Flame",
+    isPrimary: true,
   },
   {
     name: "PySpark",
-    category: "Big Data & Lakehouse",
-    level: 92,
-    experience: "Distributed Spark Processing",
-    description: "Developing scalable distributed data pipelines with Spark DataFrame API, Spark SQL, Structured Streaming, partitioned writes, and skew remediation.",
-    tags: ["DataFrame API", "Spark SQL", "Structured Streaming", "Broadcast Joins", "Caching"],
+    category: "Distributed Big Data Processing",
+    level: 94,
+    highlight: "DataFrame API & Spark SQL",
+    description: "Building resilient distributed data processing jobs using PySpark DataFrame API and Spark SQL. Tuning partition strategies, broadcast joins, caching, and handling skewed data in production clusters.",
+    keyTools: ["Spark DataFrames", "Spark SQL", "Structured Streaming", "Broadcast Joins", "Partition Pruning"],
     color: "#E25A1C",
-    iconName: "Zap",
+    isPrimary: true,
   },
   {
     name: "SQL",
-    category: "Databases & Querying",
+    category: "Data Querying & Analytical Optimization",
     level: 96,
-    experience: "Advanced Analytics & Tuning",
-    description: "Mastery over complex window functions, recursive CTEs, query plan execution profiling, index strategies, and multi-dialect query optimization.",
-    tags: ["Window Functions", "CTEs", "Query Plan Tuning", "Analytics", "Subqueries"],
-    color: "#00758F",
-    iconName: "Database",
+    highlight: "Complex Analytics & Query Tuning",
+    description: "Authoring performant queries with analytical window functions, common table expressions (CTEs), multi-table joins, subqueries, and profiling execution plans for high-efficiency querying.",
+    keyTools: ["Window Functions", "Recursive CTEs", "Explain Plan Tuning", "Aggregation Engines", "Data Modeling"],
+    color: "#0284C7",
+    isPrimary: true,
   },
   {
-    name: "Snowflake",
-    category: "Data Warehousing",
+    name: "Bitbucket",
+    category: "Version Control & CI/CD",
     level: 90,
-    experience: "Cloud Data Warehousing",
-    description: "Deploying high-performance cloud warehouses, SnowSQL, Streams & Tasks, Zero-Copy Cloning, Time Travel, dynamic masking, and cost optimization.",
-    tags: ["SnowSQL", "Streams & Tasks", "Zero-Copy Clone", "Time Travel", "Virtual Warehouses"],
-    color: "#29B5E8",
-    iconName: "Cloud",
+    highlight: "Git Workflows & Team Collaboration",
+    description: "Managing enterprise repositories, feature branch workflows, code reviews via Pull Requests, merge strategies, branching models, and integrating pipeline deployments with Bitbucket Pipelines.",
+    keyTools: ["Git Branching", "Pull Requests", "Code Review", "Bitbucket Pipelines", "Merge Conflict Resolution"],
+    color: "#2684FF",
+    isPrimary: true,
+  },
+  {
+    name: "PyCharm",
+    category: "Python Development Environment",
+    level: 92,
+    highlight: "Professional IDE & Debugging",
+    description: "Writing robust data engineering code in PyCharm with virtual environment isolation, interactive debugging, code profiling, type annotations, and automated unit testing suites.",
+    keyTools: ["Remote Debugging", "Virtual Environments", "Code Profiling", "PyTest Unit Testing", "Refactoring"],
+    color: "#21D789",
+    isPrimary: true,
   },
   {
     name: "Fivetran HVR",
-    category: "CDC & ETL",
-    level: 94,
-    experience: "Real-time High-Volume Replication",
-    description: "Implementing distributed log-based Change Data Capture (CDC) replication with zero downtime, channel topologies, LogMiner integrations, and schema evolution.",
-    tags: ["Log-based CDC", "Channel Config", "Oracle LogMiner", "Zero-Downtime", "HVR Hub/Agent"],
-    color: "#0066FF",
-    iconName: "Workflow",
-  },
-  {
-    name: "Informatica PowerCenter",
-    category: "CDC & ETL",
-    level: 88,
-    experience: "Enterprise ETL Workflows",
-    description: "Designing enterprise-grade mappings, transformations (Router, Lookup, Joiner, Aggregator), parameter files, workflow monitor debugging, and error handling.",
-    tags: ["Mappings", "Workflows", "Transformations", "Parameterization", "Sessions"],
-    color: "#FF4D00",
-    iconName: "Layers",
-  },
-  {
-    name: "Oracle Database",
-    category: "Databases & Querying",
-    level: 90,
-    experience: "Enterprise RDBMS & PL/SQL",
-    description: "Managing enterprise database schemas, PL/SQL stored procedures, triggers, partitioning strategies, materialized views, and explain plan tuning.",
-    tags: ["PL/SQL", "Stored Procedures", "Table Partitioning", "Indexes", "Explain Plan"],
-    color: "#F80000",
-    iconName: "HardDrive",
-  },
-  {
-    name: "Python",
-    category: "Cloud & Languages",
-    level: 90,
-    experience: "Data Engineering & Scripting",
-    description: "Writing clean, production-grade scripts for data ingestion, automation, Pandas/NumPy transformations, API consumers, and pipeline test suites.",
-    tags: ["Automation", "Pandas", "OOP", "APIs", "Data Validation"],
-    color: "#3776AB",
-    iconName: "Code",
-  },
-  {
-    name: "AWS Fundamentals",
-    category: "Cloud & Languages",
+    category: "Change Data Capture (CDC)",
     level: 85,
-    experience: "Cloud Infrastructure & Storage",
-    description: "Leveraging core AWS data infrastructure including S3 data lakes, IAM security roles, EC2 compute, Lambda triggers, CloudWatch logs, and VPC networking.",
-    tags: ["Amazon S3", "IAM", "EC2", "Lambda", "CloudWatch"],
-    color: "#FF9900",
-    iconName: "Cloud",
+    highlight: "Log-Based Real-Time Replication",
+    description: "Implementing log-based Change Data Capture (CDC) replication from enterprise relational databases with minimal source load and zero downtime.",
+    keyTools: ["LogMiner CDC", "Channel Setup", "Schema Replication", "Low-Latency Sync"],
+    color: "#4F46E5",
+    isPrimary: false,
   },
 ];
 
-export const CERTIFICATIONS_DATA: CertificationItem[] = [
+export const SECONDARY_SKILLS = [
+  { name: "Snowflake", role: "Cloud Data Warehousing" },
+  { name: "Oracle Database", role: "Enterprise RDBMS & PL/SQL" },
+  { name: "Python", role: "Scripting & Automation" },
+  { name: "AWS Fundamentals", role: "Cloud Storage & IAM" },
+  { name: "Informatica PowerCenter", role: "Enterprise ETL Workflows" },
+];
+
+export const CERTIFICATIONS: CertificationItem[] = [
   {
     id: "cert-1",
     title: "Databricks Certified Data Analyst Associate",
@@ -157,8 +123,7 @@ export const CERTIFICATIONS_DATA: CertificationItem[] = [
     year: 2025,
     type: "Certification",
     badgeColor: "#FF3621",
-    skillsCovered: ["Databricks SQL", "Dashboards & Visualizations", "Delta Lake Queries", "Data Modeling", "Partner Connect"],
-    summary: "Validates proficiency in executing analytical queries on Databricks SQL, building interactive dashboards, and modeling datasets on Delta Lake.",
+    skillsCovered: ["Databricks SQL", "Dashboards", "Delta Lake", "Data Modeling"],
   },
   {
     id: "cert-2",
@@ -168,8 +133,7 @@ export const CERTIFICATIONS_DATA: CertificationItem[] = [
     year: 2025,
     type: "Badge",
     badgeColor: "#29B5E8",
-    skillsCovered: ["Data Pipelines", "Continuous Data Loading (Snowpipe)", "Streams & Tasks", "Semi-Structured Data (JSON/VARIANT)"],
-    summary: "Hands-on mastery over building robust, automated data engineering pipelines in Snowflake using Snowpipe, Streams, Tasks, and JavaScript/Python UDFs.",
+    skillsCovered: ["Data Pipelines", "Snowpipe", "Streams & Tasks", "VARIANT"],
   },
   {
     id: "cert-3",
@@ -179,8 +143,7 @@ export const CERTIFICATIONS_DATA: CertificationItem[] = [
     year: 2025,
     type: "Badge",
     badgeColor: "#29B5E8",
-    skillsCovered: ["Multi-Cluster Virtual Warehouses", "Time Travel", "Zero-Copy Cloning", "Data Sharing", "RBAC Security"],
-    summary: "Demonstrates practical competence in architecting elastic data warehouses, managing storage/compute decoupling, and securing data with role-based access controls.",
+    skillsCovered: ["Virtual Warehouses", "Time Travel", "Zero-Copy Cloning", "RBAC"],
   },
   {
     id: "cert-4",
@@ -190,8 +153,7 @@ export const CERTIFICATIONS_DATA: CertificationItem[] = [
     year: 2025,
     type: "Certification",
     badgeColor: "#00ED64",
-    skillsCovered: ["Document Modeling", "Aggregation Framework", "Atlas Architecture", "Indexing & Sharding", "Replica Sets"],
-    summary: "Certifies knowledge of NoSQL architecture, document data modeling, multi-stage aggregation pipelines, and high-availability database cluster administration.",
+    skillsCovered: ["Document Modeling", "Aggregation Framework", "Atlas Architecture"],
   },
   {
     id: "cert-5",
@@ -201,8 +163,7 @@ export const CERTIFICATIONS_DATA: CertificationItem[] = [
     year: 2024,
     type: "Certification",
     badgeColor: "#0066FF",
-    skillsCovered: ["HVR 6.0 Hub & Agent Architecture", "Log-based CDC", "High-Volume Replication", "Heterogeneous Sources", "Channel Orchestration"],
-    summary: "Comprehensive certification covering high-volume real-time replication, log-based CDC capture engine, channel deployment, and distributed replication topology.",
+    skillsCovered: ["HVR 6.0 Hub & Agent", "Log-based CDC", "High-Volume Replication"],
   },
   {
     id: "cert-6",
@@ -212,8 +173,7 @@ export const CERTIFICATIONS_DATA: CertificationItem[] = [
     year: 2024,
     type: "Accreditation",
     badgeColor: "#0066FF",
-    skillsCovered: ["Fivetran Core Architecture", "Automated Connectors", "Target Warehouses", "dbt Transformations", "Security & Encryption"],
-    summary: "Validates technical proficiency in designing and deploying enterprise automated data integration architectures across diverse cloud sources and destinations.",
+    skillsCovered: ["Automated Connectors", "Target Warehouses", "dbt Transformations"],
   },
   {
     id: "cert-7",
@@ -223,8 +183,7 @@ export const CERTIFICATIONS_DATA: CertificationItem[] = [
     year: 2024,
     type: "Certification",
     badgeColor: "#7B68EE",
-    skillsCovered: ["Master Data Management (MDM)", "Entity Resolution", "Data Clean Rooms", "Reltio Connected Data Platform", "Graph Relationships"],
-    summary: "Validates core architectural concepts of modern cloud-native Master Data Management (MDM), real-time entity resolution, match/merge rules, and operational analytics.",
+    skillsCovered: ["Master Data Management (MDM)", "Entity Resolution", "Data Clean Rooms"],
   },
   {
     id: "cert-8",
@@ -234,8 +193,7 @@ export const CERTIFICATIONS_DATA: CertificationItem[] = [
     year: 2024,
     type: "Certification",
     badgeColor: "#FF3621",
-    skillsCovered: ["Apache Spark", "Delta Lake", "Databricks CLI & REST API", "Delta Live Tables", "Production Pipelines"],
-    summary: "Recognizes foundational skills in building end-to-end data pipelines using Apache Spark, Delta Lake ACID transactions, and Lakehouse best practices.",
+    skillsCovered: ["Apache Spark", "Delta Lake", "Databricks Workflows", "Production ETL"],
   },
   {
     id: "cert-9",
@@ -245,71 +203,45 @@ export const CERTIFICATIONS_DATA: CertificationItem[] = [
     year: 2023,
     type: "Certification",
     badgeColor: "#FF9900",
-    skillsCovered: ["AWS Cloud Architecture", "Security & Compliance (IAM)", "Core Services (S3, EC2, RDS)", "Cloud Economics & Pricing", "Billing Models"],
-    summary: "Official Amazon Web Services certification proving fundamental fluency with the AWS cloud platform, shared responsibility security model, and cloud economics.",
+    skillsCovered: ["AWS Cloud Architecture", "Security & IAM", "S3 Storage & EC2"],
   },
 ];
 
-export const PROJECTS_DATA: ProjectItem[] = [
+export const PROJECTS: ProjectItem[] = [
   {
-    id: "project-1",
-    title: "DataInsight Studio",
-    subtitle: "100% Client-Side AI Data Profiler, SQL & PySpark Code Generator",
-    description: "An offline-first browser analytical platform built with React, TypeScript, and Tailwind CSS. Uploads CSV, Excel (.xlsx/.xls), or JSON to compute deep distribution statistics, missingness rates, and generate production-grade ANSI/Snowflake/PostgreSQL SQL and PySpark DataFrame code with zero cloud upload.",
-    architecture: ["Client-side Web Workers", "In-Memory Parsing (PapaParse/XLSX)", "AST Query Compiler", "PySpark Generator Engine"],
-    metrics: [
-      { label: "Data Privacy", value: "100% Client-Side" },
-      { label: "SQL Dialects", value: "6 Supported" },
-      { label: "Execution Time", value: "<150ms Instant" },
+    id: "proj-1",
+    title: "Production Medallion Lakehouse on Databricks",
+    subtitle: "Databricks • PySpark • Delta Lake • SQL",
+    techStack: ["Databricks", "PySpark", "Delta Lake", "Spark SQL", "Unity Catalog"],
+    description: "Architected an enterprise Medallion Lakehouse pipeline processing raw batch and streaming data. Extracted and ingested raw data into Bronze, cleaned and deduplicated in Silver with PySpark, and published optimized business-ready Gold marts using Delta Z-Ordering.",
+    outcomes: [
+      "4.5x analytical query performance with Delta Lake Z-Ordering and caching",
+      "Automated orchestration using Databricks Workflows with zero manual triggers",
+      "Full ACID compliance with point-in-time Time Travel auditing",
     ],
-    tags: ["React", "TypeScript", "Tailwind CSS", "PySpark", "SQL", "Data Profiling"],
-    liveDemo: true,
-    featured: true,
-    category: "Developer Tooling",
   },
   {
-    id: "project-2",
-    title: "High-Volume Real-Time CDC Pipeline",
-    subtitle: "Heterogeneous Oracle to Snowflake & Databricks Delta Lake Replication",
-    description: "Engineered a low-latency, log-based Change Data Capture (CDC) replication topology using Fivetran HVR. Captured transactional changes from mission-critical Oracle DB instances via LogMiner with sub-second replication latency into Snowflake and Databricks Delta Lake without impacting source OLTP workloads.",
-    architecture: ["Oracle LogMiner", "Fivetran HVR 6.0 Hub & Agent", "Snowflake Target Warehouse", "Databricks Delta Lake"],
-    metrics: [
-      { label: "Latency", value: "< 2 Seconds" },
-      { label: "Data Loss", value: "Zero (ACID CDC)" },
-      { label: "Throughput", value: "50K+ Events/sec" },
+    id: "proj-2",
+    title: "Engineered Python & PySpark Codebase in PyCharm with Bitbucket",
+    subtitle: "PyCharm • Bitbucket • Python • PySpark • CI/CD",
+    techStack: ["PyCharm", "Bitbucket", "Python", "PyTest", "Git Flow"],
+    description: "Standardized modern development practices for distributed data jobs. Developed modular PySpark transformation packages in PyCharm with virtual environment isolation, automated PyTest suites, and managed team pull requests and code review workflows on Bitbucket.",
+    outcomes: [
+      "Zero regression deployment rate using Bitbucket pull request branch protection",
+      "Modular Python package architecture with isolated virtual environments in PyCharm",
+      "Comprehensive test coverage validating data transformations before cluster submission",
     ],
-    tags: ["Fivetran HVR", "Oracle Database", "Snowflake", "Databricks", "CDC", "LogMiner"],
-    featured: true,
-    category: "Real-Time Streaming",
   },
   {
-    id: "project-3",
-    title: "Enterprise Medallion Architecture Lakehouse",
-    subtitle: "Automated Bronze -> Silver -> Gold Pipelines with PySpark & Delta Lake",
-    description: "Architected a scalable Medallion Lakehouse on Databricks powered by PySpark. Ingests raw batch and streaming data into Bronze (raw append-only), enforces data schemas and de-duplication in Silver (cleaned & enriched), and serves aggregated business metrics into Gold with time-travel and Z-Order indexing.",
-    architecture: ["Databricks Auto Loader", "PySpark DataFrame API", "Delta Lake ACID Engine", "Databricks Workflows"],
-    metrics: [
-      { label: "Query Speedup", value: "4.5x with Z-Order" },
-      { label: "Data Quality", value: "100% Schema-Enforced" },
-      { label: "Job Orchestration", value: "Automated Workflows" },
+    id: "proj-3",
+    title: "Enterprise CDC & Data Integration Pipeline",
+    subtitle: "Fivetran HVR • Oracle Database • Snowflake • SQL",
+    techStack: ["Fivetran HVR", "Oracle DB", "Snowflake", "SQL", "LogMiner"],
+    description: "Configured low-latency log-based Change Data Capture (CDC) replication from enterprise Oracle OLTP databases into cloud targets using Fivetran HVR without burdening production transaction throughput.",
+    outcomes: [
+      "Sub-2-second continuous replication latency for transactional tables",
+      "Zero impact on source Oracle OLTP application performance",
+      "Seamless schema synchronization and transactional consistency",
     ],
-    tags: ["PySpark", "Databricks", "Delta Lake", "Python", "SQL", "Medallion"],
-    featured: true,
-    category: "Lakehouse Architecture",
-  },
-  {
-    id: "project-4",
-    title: "Legacy Informatica to Cloud ELT Modernization",
-    subtitle: "Migration from On-Prem PowerCenter to AWS S3 & Snowflake Cloud Data Platform",
-    description: "Modernized legacy on-premise Informatica PowerCenter ETL workflows into scalable cloud ELT pipelines. Converted row-by-row server-bound transformations into set-based Snowflake SQL and orchestrated data staging through Amazon S3 with automated error auditing.",
-    architecture: ["Informatica PowerCenter", "Amazon S3 Staging", "Snowflake SnowSQL", "Python Audit Automation"],
-    metrics: [
-      { label: "Batch Window Reduction", value: "65% Faster" },
-      { label: "Infrastructure Cost", value: "40% Savings" },
-      { label: "Pipeline Reliability", value: "Zero Failures SLA" },
-    ],
-    tags: ["Informatica", "Snowflake", "AWS S3", "SQL", "ETL to ELT Migration"],
-    featured: false,
-    category: "Cloud Migration",
   },
 ];
