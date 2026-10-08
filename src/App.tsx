@@ -1,42 +1,42 @@
 import React from 'react';
+import { AnimatedBackground } from './components/portfolio/AnimatedBackground';
 import { MinimalNavbar } from './components/portfolio/MinimalNavbar';
 import { YouTubeHeroScreen } from './components/portfolio/YouTubeHeroScreen';
 import { FocusedSkillsSection } from './components/portfolio/FocusedSkillsSection';
 import { CompactCertifications } from './components/portfolio/CompactCertifications';
-import { ConciseProjects } from './components/portfolio/ConciseProjects';
 import { StreamlinedContact } from './components/portfolio/StreamlinedContact';
 import { PERSONAL_INFO } from './data/portfolioData';
 
 export function App() {
   return (
-    <div className="min-h-screen bg-black text-zinc-100 font-sans selection:bg-red-600/30 selection:text-white">
+    <div className="min-h-screen bg-black text-zinc-100 font-sans relative selection:bg-red-600/30 selection:text-white">
+      {/* Animated Background Canvas */}
+      <AnimatedBackground />
+
       {/* Sticky Clean Header Bar */}
       <MinimalNavbar />
 
-      <main className="space-y-4">
-        {/* YouTube Screen with Profile Picture at the top */}
+      <main className="relative z-10 space-y-6">
+        {/* YouTube Screen with Profile Picture at the top (play button removed from middle) */}
         <YouTubeHeroScreen />
 
-        {/* Core Technical Focus: Databricks, PySpark, SQL, Bitbucket, PyCharm (HVR balanced) */}
+        {/* Core Technical Focus: Databricks, PySpark, SQL, Bitbucket, PyCharm, Informatica PowerCenter */}
         <FocusedSkillsSection />
 
         {/* All 9 Verified Certifications & Badges */}
         <CompactCertifications />
 
-        {/* Production Architectures & Implementations */}
-        <ConciseProjects />
-
         {/* Direct Contact Actions */}
         <StreamlinedContact />
       </main>
 
-      {/* Clean Minimal Footer */}
-      <footer className="border-t border-zinc-900 py-8 text-center text-xs text-zinc-500 font-mono">
-        <div>
+      {/* Clean Minimal Footer with scaled fonts */}
+      <footer className="relative z-10 border-t border-zinc-900 py-10 text-center text-sm text-zinc-400 font-mono">
+        <div className="font-semibold text-zinc-300">
           © {new Date().getFullYear()} {PERSONAL_INFO.name} • {PERSONAL_INFO.location}
         </div>
-        <div className="mt-1 text-[11px] text-zinc-600">
-          Databricks • PySpark • SQL • Bitbucket • PyCharm Data Engineer
+        <div className="mt-1.5 text-xs text-zinc-500">
+          Databricks • PySpark • SQL • Bitbucket • PyCharm • Informatica
         </div>
       </footer>
     </div>
